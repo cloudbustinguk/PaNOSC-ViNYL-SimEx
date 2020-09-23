@@ -13,11 +13,10 @@ rm ${BRANCH}.zip
 cd SimEx-${BRANCH}
 
 export PATH=/opt/miniconda/bin:$PATH
-#export HDF5_ROOT=/opt/miniconda
+export HDF5_ROOT=/opt/miniconda
 
 echo "###### DONE unzip ${BRANCH}.zip"
 
-echo "DEBUG: $PATH"
 conda install -c intel mkl
 
 echo "##### DONE install mkl"
@@ -33,27 +32,11 @@ cd build
 # Uncomment the next line and specify the install dir for a custom user install.
 #cmake -DCMAKE_INSTALL_PREFIX=$ROOT_DIR $ROOT_DIR
 # Uncomment the next line and specify the install dir for a developer install.
-##cmake -DXCSITPhotonDetector=OFF \
-      #-DGAPDPhotonDiffractor=OFF \
-      #-DCrystFELPhotonDiffractor=OFF \
-      #-DINSTALL_TESTS=OFF \
-      #-DSRW_OPTIMIZED=ON \
-      #-DDEVELOPER_INSTALL=OFF \
-      #-DCMAKE_INSTALL_PREFIX=$ROOT_DIR \
-      #$ROOT_DIR \
-      #..
-
-# DSW - Cloudbusting
-cmake -DSRW_OPTIMIZED=ON \
-      -DUSE_SingFELPhotonDiffractor=ON \
-      -DUSE_CrystFELPhotonDiffractor=ON \
-      -DUSE_s2e=ON \
-      -DUSE_S2EReconstruction_EMC=ON \
-      -DUSE_S2EReconstruction_DM=ON \
-      -DUSE_wpg=ON \
-      -DUSE_GenesisPhotonSource=ON \
-      -DUSE_FEFFPhotonInteractor=ON \
+cmake -DXCSITPhotonDetector=OFF \
+      -DGAPDPhotonDiffractor=OFF \
+      -DCrystFELPhotonDiffractor=OFF \
       -DINSTALL_TESTS=OFF \
+      -DSRW_OPTIMIZED=ON \
       -DDEVELOPER_INSTALL=OFF \
       -DCMAKE_INSTALL_PREFIX=$ROOT_DIR \
       $ROOT_DIR \

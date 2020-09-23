@@ -22,8 +22,7 @@ export PATH=$PREFIX/bin:$PATH
 conda config --set always_yes True
 
 # pip cannot install pyqt
-conda install --no-update-deps pyqt
-
+conda install --no-update-deps pyqt=5.9.2
 
 # delete tests
 find . -type d -name tests -depth -exec rm -rf {} \;

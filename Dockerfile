@@ -17,7 +17,6 @@ RUN ["bash", "/opt/simex_install.sh"]
 
 ENV SIMEX_ROOT=/opt/simex_platform
 ENV PATH=$SIMEX_ROOT/bin:$PATH
-ENV PYTHONPATH=$SIMEX_ROOT/Sources/python:$SIMEX_ROOT/lib/python3.6:$PYTHONPATH
+ENV PYTHONPATH=$SIMEX_ROOT/Sources/python:$SIMEX_ROOT/lib/python3.7:$PYTHONPATH
 ENV SIMEX_TESTS=$SIMEX_ROOT/Tests
 ENV PYFAI_TESTIMAGES=/tmp
-
