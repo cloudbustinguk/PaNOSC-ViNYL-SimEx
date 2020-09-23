@@ -2,7 +2,7 @@
 
 set -e
 
-BRANCH=develop
+BRANCH=master
 URL=https://github.com/PaNOSC-ViNYL/SimEx/archive/${BRANCH}.zip
 
 cd /opt
@@ -34,11 +34,18 @@ cd build
 # Uncomment the next line and specify the install dir for a developer install.
 cmake -DXCSITPhotonDetector=OFF \
       -DGAPDPhotonDiffractor=OFF \
-      -DCrystFELPhotonDiffractor=OFF \
+      -DCrystFELPhotonDiffractor=ON \
       -DINSTALL_TESTS=OFF \
       -DSRW_OPTIMIZED=ON \
       -DDEVELOPER_INSTALL=OFF \
       -DCMAKE_INSTALL_PREFIX=$ROOT_DIR \
+      -DUSE_SDF=ON \
+      -DUSE_s2e=ON \
+      -DUSE_S2EReconstruction_EMC=ON \
+      -DUSE_S2EReconstruction_DM=ON \
+      -DUSE_wpg=ON \
+      -DUSE_GenesisPhotonSource=ON \
+      -DUSE_FEFFPhotonInteractor=ON \
       $ROOT_DIR \
       ..
 

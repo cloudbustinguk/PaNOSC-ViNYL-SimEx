@@ -4,4 +4,4 @@ PaNOSC-ViNYL build of SimEx
 
 Build as follows:
 
-    buildah bud -t cloudbusting/simex-cloudbusting:latest -f Dockerfile .
+    buildah bud -t cloudbusting/simex:latest -f Dockerfile .
