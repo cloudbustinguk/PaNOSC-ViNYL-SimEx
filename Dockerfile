@@ -15,6 +15,9 @@ ADD $simex_script /opt/simex_install.sh
 
 RUN ["bash", "/opt/simex_install.sh"]
 
+ENV MKLROOT=/opt/miniconda
+ENV MKL_ROOT=/opt/miniconda
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/miniconda/lib
 ENV SIMEX_ROOT=/opt/simex_platform
 ENV PATH=$SIMEX_ROOT/bin:$PATH
 ENV PYTHONPATH=$SIMEX_ROOT/Sources/python:$SIMEX_ROOT/lib/python3.7:$PYTHONPATH
