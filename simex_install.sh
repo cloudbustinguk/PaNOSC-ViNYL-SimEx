@@ -27,8 +27,25 @@ popd
 
 echo "##### DONE install mkl"
 
-ROOT_DIR=/opt/simex_platform
-mkdir -p $ROOT_DIR
+#ROOT_DIR=/opt/simex_platform
+#mkdir -p $ROOT_DIR
+
+# PYPATH is necessary to facilitate the
+# install of sdf and s2e; otherwise the
+# modules are not installed outside  of 
+# the build tree -- dwebster.
+PYPATH=/opt/miniconda
+
+CONDA_PREFIX=/opt/miniconda
+CONDA_BIN=`which conda`
+CONDA_BIN=${CONDA_BIN%/*}
+source ${CONDA_BIN%/*}/etc/profile.d/conda.sh
+INSTALL_PREFIX=$CONDA_PREFIX
+PYVERSION=`python -V | tr  '[:upper:]' '[:lower:]' | tr -d ' '`
+PYLIB=${PYVERSION%.*}
+DEVELOPER_MODE=ON
+export ZLIB_ROOT=$CONDA_PREFIX
+export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
 
 # Create new build dir and cd into it.
 
@@ -44,8 +61,8 @@ cmake -DUSE_XCSITPhotonDetector=OFF \
       -DUSE_SingFELPhotonDiffractor=ON \
       -DINSTALL_TESTS=OFF \
       -DSRW_OPTIMIZED=ON \
-      -DDEVELOPER_INSTALL=OFF \
-      -DCMAKE_INSTALL_PREFIX=$ROOT_DIR \
+      -DDEVELOPER_INSTALL=$DEVELOPER_MODE \
+      -DCMAKE_INSTALL_PREFIX=/opt/miniconda \
       -DUSE_sdf=ON \
       -DUSE_s2e=ON \
       -DUSE_S2EReconstruction_EMC=ON \
@@ -53,10 +70,9 @@ cmake -DUSE_XCSITPhotonDetector=OFF \
       -DUSE_wpg=ON \
       -DUSE_GenesisPhotonSource=ON \
       -DUSE_FEFFPhotonInteractor=ON \
-      $ROOT_DIR \
+      -DCMAKE_INSTALL_LOCAL_ONLY=0 \
       .. 
 
-chmod og+rwX -R $ROOT_DIR
 
 # Build the project.
 make -j12
@@ -69,18 +85,10 @@ cd ../..
 
 echo "####### done make install"
 
-#rm -rf simex_platform-${BRANCH}
 
-
-#remove tests?
-#rm -rf $ROOT_DIR/Tests
-
-echo "source /opt/simex_platform/bin/simex_vars.sh" > /etc/profile.d/scripts-simex.sh && \
+cp /opt/SimEx-${BRANCH}/build/simex_vars.sh ${CONDA_PREFIX}/bin
+echo "source ${CONDA_PREFIX}/bin/simex_vars.sh" > /etc/profile.d/scripts-simex.sh && \
 	chmod 755 /etc/profile.d/scripts-simex.sh
 
-
 echo "export PYFAI_TESTIMAGES=/tmp" >> /etc/profile.d/scripts-simex.sh
-
-
-chmod og+rwX -R /opt/simex_platform
 

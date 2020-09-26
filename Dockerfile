@@ -17,9 +17,10 @@ RUN ["bash", "/opt/simex_install.sh"]
 
 ENV MKLROOT=/opt/miniconda
 ENV MKL_ROOT=/opt/miniconda
+ENV PYPATH=/opt/miniconda
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/miniconda/lib
 ENV SIMEX_ROOT=/opt/simex_platform
 ENV PATH=$SIMEX_ROOT/bin:$PATH
-ENV PYTHONPATH=$SIMEX_ROOT/Sources/python:$SIMEX_ROOT/lib/python3.7:$PYTHONPATH
+ENV PYTHONPATH=$SIMEX_ROOT/Sources/python:$SIMEX_ROOT/lib/python3.7:$PYTHONPATH:/opt/SimEx-master/build/Modules/Others/sdf/sdf-prefix/src/sdf-build/lib/python3.7/site-packages/lib/python
 ENV SIMEX_TESTS=$SIMEX_ROOT/Tests
 ENV PYFAI_TESTIMAGES=/tmp
