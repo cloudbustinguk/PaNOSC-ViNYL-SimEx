@@ -24,3 +24,5 @@ ENV PATH=$SIMEX_ROOT/bin:$PATH
 ENV PYTHONPATH=$SIMEX_ROOT/Sources/python:$SIMEX_ROOT/lib/python3.7:$PYTHONPATH:/opt/SimEx-master/build/Modules/Others/sdf/sdf-prefix/src/sdf-build/lib/python3.7/site-packages/lib/python
 ENV SIMEX_TESTS=$SIMEX_ROOT/Tests
 ENV PYFAI_TESTIMAGES=/tmp
+
+RUN useradd -m jovyan
