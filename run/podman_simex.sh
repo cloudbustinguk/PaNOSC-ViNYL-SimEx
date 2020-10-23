@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-containername="localhost/cloudbusting/simex"
+containername="cloudbusting/simex"
 XSOCK=/tmp/.X11-unix
 
 DOCK_UID=$(id -u)
